@@ -1,0 +1,9 @@
+<%= render 'shared/errors', obj: @comment %>
+
+<%= form_for [@post, @comment] do |f| %>
+
+  <%= f.label :body, "Leave a comment:" %>
+  <%= f.text_area :body, size: "60x4" %><br />
+
+  <%= f.submit "Add comment", class: 'btn btn-primary' %>
+<% end %>

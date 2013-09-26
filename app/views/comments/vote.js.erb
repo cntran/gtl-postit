@@ -1,0 +1,7 @@
+var flash_error = '<%= @flash_error %>';
+if (flash_error !== '') {
+  alert(flash_error);
+}
+else {
+  $('#comment_vote_<%= @comment.id %>').html(<%= @comment.total_votes %>);
+}

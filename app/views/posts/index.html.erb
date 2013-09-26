@@ -1,0 +1,15 @@
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to '+', vote_post_path(post, vote: true), method: 'post', remote: true if logged_in? %>   
+      [ <span id="post_vote_<%= post.slug %>"><%= post.total_votes %></span> ]   
+      <%= link_to '-', vote_post_path(post, vote: false), method: 'post', remote: true if logged_in?  %>
+      |
+      <%= link_to post.title, fix_url(post.url) %> @ <%= pretty_date(post.created_at) %> <br />
+      [<%= link_to 'view', post_path(post) %>
+      <% if logged_in? %>
+        &nbsp;|&nbsp;<%= link_to 'edit', edit_post_path(post) %>
+      <% end %>]
+    </li>
+  <% end %>
+</ul>

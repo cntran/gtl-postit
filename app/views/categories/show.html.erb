@@ -1,0 +1,12 @@
+<h1>Category: <%= @category.name %></h1>
+
+<h2>Posts</h1>
+
+<% if @category.posts.count > 0 %>
+  <% @category.posts.each do |post| %>
+    <h3><a href="<%= fix_url(post.url) %>" target="_blank"><%= post.title %></a></h3>
+    <p><%= post.description %></p>
+  <% end %>
+<% else %>
+  <p><em>No posts.</em></p>
+<% end %>
