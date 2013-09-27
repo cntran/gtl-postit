@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>
+
+<%= f.label :username %>
+<%= f.text_field :username %><br />
+<%= f.label :password %>
+<%= f.password_field :password %><br />
+
+<%= f.label :time_zone %>
+
+<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: default_time_zone %><br />
+
+<%= f.submit (logged_in? ? "Update" : "Register"), class: "btn btn-small" %>
+
+<% end %>

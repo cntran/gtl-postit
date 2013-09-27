@@ -3,7 +3,7 @@
 <%= form_for [@post, @comment] do |f| %>
 
   <%= f.label :body, "Leave a comment:" %>
-  <%= f.text_area :body, size: "60x4" %><br />
+  <%= f.text_area :body, size: "120x4" %><br />
 
-  <%= f.submit "Add comment", class: 'btn btn-primary' %>
+  <%= f.submit "Add comment", class: 'btn btn-small' %>
 <% end %>

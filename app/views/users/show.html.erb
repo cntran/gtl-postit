@@ -1,0 +1,23 @@
+<h1>Profile (<%= link_to 'edit', edit_user_path(current_user) %>)</h1>
+<h2>Activity</h2>
+
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
+  <li><a href="#comments" data-toggle="tab">Comments</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="posts">
+    <%= render 'shared/posts', obj: @user.posts %>
+  </div>
+  <div class="tab-pane" id="comments">
+    <% @user.comments.each do |comment| %>
+      <p><em><%= comment.body %></em> on <%= link_to comment.post.title, post_path(comment.post) %></p>
+      <div class="metadata">
+        <p>submitted on <%= pretty_date(comment.post.created_at) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+

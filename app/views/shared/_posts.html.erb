@@ -1,0 +1,29 @@
+<ul class="posts">
+  <% obj.each do |post| %>
+    <li>
+      <div class="row-fluid">
+        <div class="post-vote span1">
+          <%= link_to "", vote_post_path(post, vote: true), method: 'post', remote: true, :class => "icon-arrow-up" if logged_in? %>   
+          <div id="post_vote_<%= post.slug %>"><%= post.total_votes %></div>
+          <%= link_to "", vote_post_path(post, vote: false), method: 'post', remote: true, :class => "icon-arrow-down" if logged_in?  %>
+        </div>      
+        <div class="post-detail span11">
+          <%= link_to post.title, fix_url(post.url) %><br />
+          <div class="metadata">
+            <p>submitted at <%= pretty_date(post.created_at) %> by <strong><%= link_to post.creator.username, user_path(post.creator) %></strong> </p>
+            <p class="actions">
+              <%= link_to post.comments.size.to_s + ' comments', post_path(post) %>
+              <% if logged_in? %>
+              <%= link_to ' edit', edit_post_path(post) if post.creator == current_user || current_user.admin? %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </li>
+  <% end %>
+  <% if obj.count == 0 %>
+  <li><em>No posts.</em></li>
+  <% end %>
+</ul>

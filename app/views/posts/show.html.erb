@@ -1,17 +1,27 @@
 <h1><a href="<%= fix_url(@post.url) %>" target="_blank"><%= @post.title %></a></h1>
-<%= @post.description %>
+<p><%= @post.description %></p>
 
 <%= render 'comments/form', obj: @comment %>
 
 <h3>Comments</h3>
-<ul class="comments">
-<% @post.comments.each do |comment| %>
-  <li>
-    <%= link_to '+', vote_post_comment_path(@post, comment, vote: true), method: 'post', remote: true if logged_in? %>
-    [ <span id="comment_vote_<%=comment.id %>"><%= comment.total_votes %></span> ]
-    <%= link_to '-', vote_post_comment_path(@post, comment, vote: false), method: 'post', remote: true if logged_in? %>
-    |
-    <%= comment.body %>
-  </li>
-<% end %>
+
+<ul class="posts comments">
+  <% @post.comments.each do |comment| %>
+    <li>
+      <div class="row-fluid">
+        <div class="post-vote span1">
+          <%= link_to "", vote_post_comment_path(@post, comment, vote: true), method: 'post', remote: true, :class => "icon-arrow-up" if logged_in? %>   
+          <div id="comment_vote_<%= comment.id %>"><%= comment.total_votes %></div>
+          <%= link_to "", vote_post_comment_path(@post, comment, vote: false), method: 'post', remote: true, :class => "icon-arrow-down" if logged_in?  %>
+        </div>      
+        <div class="post-detail span11">
+          <p><%= comment.body %></p>
+          <div class="metadata">
+            <p>by <strong><%= link_to comment.creator.username, user_path(comment.creator) %></strong> at <%= pretty_date(comment.created_at) %> </p>
+          </div>
+        </div>
+
+      </div>
+    </li>
+  <% end %>
 </ul>

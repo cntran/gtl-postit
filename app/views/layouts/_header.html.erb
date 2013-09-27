@@ -1,0 +1,22 @@
+<div class="categories">
+  <% if logged_in? && current_user.admin? %>
+    <strong><%= link_to '+ Category', new_category_path %></strong>&nbsp;
+  <% end %>
+  <%= link_to 'All', root_path %>&nbsp;
+  <% Category.all.each do |category| %>
+  <%= link_to category.name, category_path(category) %>&nbsp;
+  <% end %>
+
+
+  <div class="right">
+
+  <% if logged_in? %>
+      <strong><%= link_to  current_user.username + ' (view profile)', user_path(current_user) %></strong>&nbsp;|
+      <strong><%= link_to 'Logout', logout_path %></strong>
+  <% else %>
+      <strong><%= link_to 'Register', new_user_path %></strong>&nbsp;|
+      <strong><%= link_to 'Login', login_path %></strong>
+  <% end %>
+  </div>
+  <div class="clear"></div>
+</div>

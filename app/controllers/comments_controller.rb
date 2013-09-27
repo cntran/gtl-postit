@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
     @comment = Comment.find(params[:id])
     vote = Vote.find_by(voteable: @comment, user: current_user)
-
+    
     respond_to do |format|
 
       format.html do

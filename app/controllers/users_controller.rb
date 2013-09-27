@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
-  def index
+  before_action :set_user, only: [:show, :edit, :update]
 
+  def index
   end
 
   def show
-
   end
 
   def new
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Successfully registered."
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       render :new
@@ -27,16 +28,28 @@ class UsersController < ApplicationController
 
   def edit
 
+    
   end
 
   def update
+
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated user."
+      redirect_to edit_user_path(@user)
+    else
+      render :edit
+    end
 
   end
 
   private
 
+  def set_user
+    @user = User.find_by(slug: params[:id])
+  end
+
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :time_zone)
   end
 
 end

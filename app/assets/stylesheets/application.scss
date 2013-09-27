@@ -14,8 +14,37 @@
 
  @import "bootstrap";
 
+body { font-family: Verdana, Arial; font-size: 0.85em; }
+h1,h2,h3,h4,h5,h6 { color: #777; line-height: 1.3em; }
+h1 { font-size: 1.2em; color: #000000; }
+h2 { font-size: 1.0em; }
+h3 { font-size: 0.8em; }
+.right { float: right; }
+.clear { clear: both; }
+label { font-size: 0.85em;}
+
+#main { padding: 1% 2%; }
+#main a, #main a:hover { color: blue; }
+#main a:visited { color: #551a8b; }
+
+#main .actions, #main .actions a { color: #888888; font-weight: bold; }
+textarea { width: 480px !important; }
+.metadata { color: #888888; font-size: 0.65em; margin: 1em 0;}
+.metadata p { line-height: 0.70em; }
+.metadata a { color: #888888 !important; }
+.brand {  color: #000000 !important; font-weight: bold; text-shadow: none !important; line-height: 35px; }
+.brand img { padding-bottom: 5px; padding-right: 5px; }
+.link-button { font-size: 1.4em; }
  .container {
-  margin-left: 135px
+  margin: 0 auto;
+}
+#submit-link {margin: 25px auto 0; text-align: center; font-weight: bold; }
+
+.nav li { margin: 0 !important; }
+.nav-tabs > li > a { line-height: 10px; }
+.navbar, .navbar-inner {
+  background: #CEE3F8;
+  min-width: 320px;
 }
 
 .navbar .nav > li > a.brand {
@@ -42,4 +71,17 @@ div.comment_votes {
   padding: 10px;
 }
 
+.nav li { margin: 0 3px; font-size: 11px; }
 .nav-item { margin: 0 0 0 15px; }
+
+.posts,
+.comments { list-style: none; margin: 0; }
+
+.categories{ background: #F0F0F0; padding: 0 1%; }
+.categories a { color: #000000; text-transform: uppercase; font-size: 0.7em; }
+
+.posts li { margin-bottom: 1.3em; }
+
+.post-vote { height: 80px; text-align: center; font-weight: bold; color: #888888; }
+.post-vote div { font-size: 1.5em; margin: 0.25em 0; }
+.post-detail { height: 80px; }
