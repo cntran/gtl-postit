@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   before_action :require_user, only: [:new, :create, :edit, :update, :vote]
 
   def index
-    @posts = Post.all
-    
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
+
 
     # expose api endpoints
     respond_to do |format|

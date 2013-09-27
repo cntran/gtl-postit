@@ -6,7 +6,7 @@
 <h3>Comments</h3>
 
 <ul class="posts comments">
-  <% @post.comments.each do |comment| %>
+  <% @post.comments.sort_by{|x| x.total_votes}.reverse.each do |comment| %>
     <li>
       <div class="row-fluid">
         <div class="post-vote span1">
