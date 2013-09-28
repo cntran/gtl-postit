@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   include Voteable
+  include Sluggable
 
+  alias_attribute :sluggable, :title
   BADWORDS = ['fuck', 'ass', 'shit']
 
   belongs_to :creator, foreign_key: "user_id", class_name: "User"
@@ -14,8 +16,6 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   validate :bad_words
 
-  after_validation :generate_slug
-
   def bad_words
     title.split(' ').each do |word|
       if BADWORDS.include?(word)
@@ -23,10 +23,6 @@ class Post < ActiveRecord::Base
         break
       end
     end
-  end
-
-  def generate_slug
-    self.slug = self.title.gsub(' ', '-').downcase
   end
 
   def to_param
